@@ -1,18 +1,18 @@
 #!/bin/sh
 set -e
 
-cd ~/.vim_runtime
+cd /home/.vim_runtime
 
-echo 'set runtimepath+=~/.vim_runtime
+echo 'set runtimepath+=/home/.vim_runtime
 
-source ~/.vim_runtime/vimrcs/basic.vim
-source ~/.vim_runtime/vimrcs/filetypes.vim
-source ~/.vim_runtime/vimrcs/plugins_config.vim
-source ~/.vim_runtime/vimrcs/extended.vim
+source /home/.vim_runtime/vimrcs/basic.vim
+source /home/.vim_runtime/vimrcs/filetypes.vim
+source /home/.vim_runtime/vimrcs/plugins_config.vim
+source /home/.vim_runtime/vimrcs/extended.vim
 
 try
-source ~/.vim_runtime/my_configs.vim
+source /home/.vim_runtime/my_configs.vim
 catch
-endtry' > ~/.vimrc
+endtry' > /home/.vimrc
 
 echo "Installed the Ultimate Vim configuration successfully! Enjoy :-)"
