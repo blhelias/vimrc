@@ -190,7 +190,8 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
+set relativenumber
+set number
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
