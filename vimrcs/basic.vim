@@ -405,20 +405,17 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
-# REPL config
 let g:repl_program = {
-    'python': 'ipython',
-    'default': 'zsh',
-    'r': 'R',
-    'lua': 'lua',
-    'vim': 'vim -e',
-    
-}
+            \   'python': 'ipython',
+            \   'default': 'zsh',
+            \   'r': 'R',
+            \   'lua': 'lua',
+            \   'vim': 'vim -e',
+            \   }
 let g:repl_predefine_python = {
-    'numpy': 'import numpy as np',
-    'matplotlib': 'from matplotlib import pyplot as plt'
-              
-}
+            \   'numpy': 'import numpy as np',
+            \   'matplotlib': 'from matplotlib import pyplot as plt'
+            \   }
 let g:repl_cursor_down = 1
 let g:repl_python_automerge = 1
 let g:repl_ipython_version = '7'
