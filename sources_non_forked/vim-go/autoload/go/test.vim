@@ -6,7 +6,10 @@ set cpo&vim
 " compile the tests instead of running them (useful to catch errors in the
 " test files). Any other argument is appended to the final `go test` command.
 function! go#test#Test(bang, compile, ...) abort
-  let args = ["test", '-tags', go#config#BuildTags()]
+  let args = ["test"]
+  if len(go#config#BuildTags()) > 0
+    call extend(args, ["-tags", go#config#BuildTags()])
+  endif
 
   " don't run the test, only compile it. Useful to capture and fix errors.
   if a:compile
@@ -32,6 +35,7 @@ function! go#test#Test(bang, compile, ...) abort
 
   if go#config#TermEnabled()
     call go#term#new(a:bang, ["go"] + args, s:errorformat())
+    return
   endif
 
   if go#util#has_job()
@@ -166,9 +170,17 @@ function! s:errorformat() abort
   let format .= ",%-G" . indent . "%#--- PASS: %.%#"
 
   " Match failure lines.
-  "
+
+  " Example failures start with '--- FAIL: ', followed by the example name
+  " followed by a space , followed by the duration of the example in
+  " parantheses. They aren't nested, though, so don't check for indentation.
+  " The errors from them also aren't indented and don't report file location
+  " or line numbers, so those won't show up. This will at least let the user
+  " know which example failed, though.
+  let format .= ',%G--- FAIL: %\\%(Example%\\)%\\@=%m (%.%#)'
+
   " Test failures start with '--- FAIL: ', followed by the test name followed
-  " by a space the duration of the test in parentheses
+  " by a space, followed by the duration of the test in parentheses.
   "
   " e.g.:
   "   '--- FAIL: TestSomething (0.00s)'
