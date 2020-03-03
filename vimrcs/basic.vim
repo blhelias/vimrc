@@ -159,6 +159,9 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+highlight ColorColumn ctermbg=magenta guibg=Magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
